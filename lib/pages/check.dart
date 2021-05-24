@@ -13,7 +13,7 @@ class CheckMyNumber extends StatefulWidget {
 class _CheckMyNumberState extends State<CheckMyNumber> {
   final TextEditingController _controller = TextEditingController();
 
-  String _text = "Haus";
+  late String _text;
   bool _numarComun = false;
   final String _numarComunText =
       "Numarul nu e nici patrat perfect, nici cub perfect.";
@@ -90,27 +90,30 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
             ),
             TextButton(
               onPressed: () {
-                _patratPerfect = false;
-                cubPerfect = false;
-                if (isPerfectSquare(_numar)) {
-                  _patratPerfect = true;
-                  _mesajFinal = "Numarul $_numar este patrat perfect.";
-                }
-                if (isPerfectCube(_numar)) {
-                  cubPerfect = true;
-                  _mesajFinal = "Numarul $_numar este cub perfect";
-                }
+                setState(() {
+                  _patratPerfect = false;
+                  cubPerfect = false;
+                  if (isPerfectSquare(_numar)) {
+                    _patratPerfect = true;
+                    _mesajFinal = "Numarul $_numar este patrat perfect.";
+                  }
+                  if (isPerfectCube(_numar)) {
+                    cubPerfect = true;
+                    _mesajFinal = "Numarul $_numar este cub perfect";
+                  }
 
-                if (_patratPerfect && cubPerfect) {
-                  _mesajFinal =
-                      "Numarul $_numar este atat patrat perfect cat si cub perfect.";
-                }
+                  if (_patratPerfect && cubPerfect) {
+                    _mesajFinal =
+                    "Numarul $_numar este atat patrat perfect cat si cub perfect.";
+                  }
 
-                if (_patratPerfect || cubPerfect) {
-                  showDialogCustom();
-                } else {
-                  _numarComun = true;
-                }
+                  if (_patratPerfect || cubPerfect) {
+                    _text = "Numarul $_numar";
+                    showDialogCustom();
+                  } else {
+                    _numarComun = true;
+                  }
+                });
               },
               child: Text("Verifica"),
               style: ButtonStyle(
