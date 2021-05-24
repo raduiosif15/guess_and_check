@@ -204,8 +204,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
     );
   }
 
-  void initializareVariabile()
-  {
+  void initializareVariabile() {
     _numarulDeGhicit = Random().nextInt(100) + 1;
     print(_numarulDeGhicit);
     _input = 0;
@@ -223,14 +222,12 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
     _controller.clear();
   }
 
-  Future showDialogCustom()
-  {
+  Future showDialogCustom() {
     return showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(_statusText),
-        content:
-        Text("Numarul a fost $_numarulDeGhicit."),
+        content: Text("Numarul a fost $_numarulDeGhicit."),
         actions: <Widget>[
           TextButton(
             onPressed: () {

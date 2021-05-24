@@ -102,7 +102,8 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                 }
 
                 if (_patratPerfect && cubPerfect) {
-                  _mesajFinal = "Numarul $_numar este atat patrat perfect cat si cub perfect.";
+                  _mesajFinal =
+                      "Numarul $_numar este atat patrat perfect cat si cub perfect.";
                 }
 
                 if (_patratPerfect || cubPerfect) {
@@ -167,8 +168,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
   }
 
   bool isPerfectCube(int number) {
-
-    for (int i = 0; i <= pow(number, 1/3).roundToDouble() + 1; i++) {
+    for (int i = 0; i <= pow(number, 1 / 3).roundToDouble() + 1; i++) {
       int cube = i * i * i;
 
       if (cube == number) {

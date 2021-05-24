@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text("Guess my number"),
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                      MaterialStateProperty.all<Color>(Colors.grey[300]!),
                 ),
               ),
               TextButton(
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 child: Text("Check my number"),
                 style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                      MaterialStateProperty.all<Color>(Colors.grey[300]!),
                 ),
               ),
             ],
