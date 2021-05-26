@@ -22,6 +22,63 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
   bool _patratPerfect = false;
   bool cubPerfect = false;
 
+  Future<void> showDialogCustom() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(_text),
+          content: Text(_mesajFinal),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.pop(context);
+                  _controller.clear();
+                });
+              },
+              child: const Text('Joaca inca o data'),
+            )
+          ],
+        );
+      },
+      barrierColor: Colors.blue,
+    );
+  }
+
+  bool isPerfectSquare(int number) {
+    if (number < 0) {
+      return false;
+    }
+
+    final int lastHexDigit = number & 0xF;
+    if (lastHexDigit > 9) {
+      return false; // return immediately in 6 cases out of 16.
+    }
+
+    if (lastHexDigit == 0 ||
+        lastHexDigit == 1 ||
+        lastHexDigit == 4 ||
+        lastHexDigit == 9) {
+      final int t = (sqrt(number) + 0.5).floor();
+      return (t * t) == number;
+    }
+
+    return false;
+  }
+
+  bool isPerfectCube(int number) {
+    for (int i = 0; i <= pow(number, 1 / 3).roundToDouble() + 1; i++) {
+      final int cube = i * i * i;
+
+      if (cube == number) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +133,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                 maxLength: 9,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  hintText:'Introduceti un numar intreg',
+                  hintText: 'Introduceti un numar intreg',
                   suffixIcon: IconButton(
                     icon: const Icon(
                       Icons.close,
@@ -127,61 +184,5 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
         ),
       ),
     );
-  }
-
-  // ignore: always_specify_types
-  Future showDialogCustom() {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(_text),
-        content: Text(_mesajFinal),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              setState(() {
-                Navigator.pop(context);
-                _controller.clear();
-              });
-            },
-            child: const Text('Joaca inca o data'),
-          )
-        ],
-      ),
-      barrierColor: Colors.blue,
-    );
-  }
-
-  bool isPerfectSquare(int number) {
-    if (number < 0) {
-      return false;
-    }
-
-    final int lastHexDigit = number & 0xF;
-    if (lastHexDigit > 9) {
-      return false; // return immediately in 6 cases out of 16.
-    }
-
-    if (lastHexDigit == 0 ||
-        lastHexDigit == 1 ||
-        lastHexDigit == 4 ||
-        lastHexDigit == 9) {
-      final int t = (sqrt(number) + 0.5).floor();
-      return (t * t) == number;
-    }
-
-    return false;
-  }
-
-  bool isPerfectCube(int number) {
-    for (int i = 0; i <= pow(number, 1 / 3).roundToDouble() + 1; i++) {
-      final int cube = i * i * i;
-
-      if (cube == number) {
-        return true;
-      }
-    }
-
-    return false;
   }
 }

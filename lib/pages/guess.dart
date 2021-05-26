@@ -226,25 +226,26 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
     _controller.clear();
   }
 
-  // ignore: always_specify_types
-  Future showDialogCustom() {
+  Future<void> showDialogCustom() {
     return showDialog(
       context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(_statusText),
-        content: Text('Numarul a fost $_numarulDeGhicit.'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () {
-              setState(() {
-                Navigator.pop(context);
-                initializareVariabile();
-              });
-            },
-            child: const Text('Joaca inca o data'),
-          )
-        ],
-      ),
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(_statusText),
+          content: Text('Numarul a fost $_numarulDeGhicit.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.pop(context);
+                  initializareVariabile();
+                });
+              },
+              child: const Text('Joaca inca o data'),
+            )
+          ],
+        );
+      },
       barrierColor: Colors.blue,
     );
   }
