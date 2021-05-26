@@ -90,13 +90,12 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
               else
                 const Text(''),
               Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 150.0, vertical: 30.0),
+                padding: const EdgeInsets.symmetric(horizontal: 150.0, vertical: 30.0),
                 child: TextField(
                   controller: _controller,
                   keyboardType: TextInputType.number,
                   // ignore: always_specify_types
-                  inputFormatters: <FilteringTextInputFormatter> [
+                  inputFormatters: <FilteringTextInputFormatter>[
                     FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                   ],
                   onChanged: (String value) {
@@ -148,8 +147,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                     },
                     child: Text('Hint $_numarulDeHinturi'),
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!),
                     ),
                   ),
                   TextButton(
@@ -183,8 +181,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                     },
                     child: const Text('Guess'),
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!),
                     ),
                   ),
                   TextButton(
@@ -195,8 +192,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                     },
                     child: const Text('Restart'),
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                      backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!),
                     ),
                   ),
                 ],

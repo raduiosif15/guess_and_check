@@ -5,7 +5,7 @@ import 'package:guess_and_check/pages/home.dart';
 
 void main() {
   runApp(MaterialApp(
-    routes: <String, WidgetBuilder> {
+    routes: <String, WidgetBuilder>{
       '/': (BuildContext context) => const HomePage(),
       '/guess': (BuildContext context) => const GuessMyNumber(),
       '/check': (BuildContext context) => const CheckMyNumber(),

@@ -15,8 +15,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
 
   late String _text;
   bool _numarComun = false;
-  final String _numarComunText =
-      'Numarul nu e nici patrat perfect, nici cub perfect.';
+  final String _numarComunText = 'Numarul nu e nici patrat perfect, nici cub perfect.';
   int _numar = 0;
   late String _mesajFinal;
   bool _patratPerfect = false;
@@ -56,10 +55,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
       return false; // return immediately in 6 cases out of 16.
     }
 
-    if (lastHexDigit == 0 ||
-        lastHexDigit == 1 ||
-        lastHexDigit == 4 ||
-        lastHexDigit == 9) {
+    if (lastHexDigit == 0 || lastHexDigit == 1 || lastHexDigit == 4 || lastHexDigit == 9) {
       final int t = (sqrt(number) + 0.5).floor();
       return (t * t) == number;
     }
@@ -161,8 +157,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                   }
 
                   if (_patratPerfect && cubPerfect) {
-                    _mesajFinal =
-                        'Numarul $_numar este atat patrat perfect cat si cub perfect.';
+                    _mesajFinal = 'Numarul $_numar este atat patrat perfect cat si cub perfect.';
                   }
 
                   if (_patratPerfect || cubPerfect) {
@@ -175,8 +170,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
               },
               child: const Text('Verifica'),
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.grey[300]!),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.grey[300]!),
               ),
             ),
           ],
