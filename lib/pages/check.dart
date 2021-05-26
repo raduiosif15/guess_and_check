@@ -120,8 +120,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
               child: TextField(
                 controller: _controller,
                 keyboardType: TextInputType.number,
-                // ignore: always_specify_types
-                inputFormatters: [
+                inputFormatters: <FilteringTextInputFormatter>[
                   FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                 ],
                 onChanged: (String value) {
