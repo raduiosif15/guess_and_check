@@ -16,7 +16,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
   late String _text;
   bool _numarComun = false;
   final String _numarComunText =
-      "Numarul nu e nici patrat perfect, nici cub perfect.";
+      'Numarul nu e nici patrat perfect, nici cub perfect.';
   int _numar = 0;
   late String _mesajFinal;
   bool _patratPerfect = false;
@@ -26,46 +26,48 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Check my number"),
+        title: const Text('Check my number'),
         centerTitle: true,
       ),
       body: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(12.0),
+            const Padding(
+              padding: EdgeInsets.all(12.0),
               child: Text(
-                "Introduceti un numar intreg de la tastatura si verificati daca acesta este:\n"
-                "• patrat perfect\n"
-                "• cub perfect\n"
-                "• amandoua\n",
+                'Introduceti un numar intreg de la tastatura si verificati daca acesta este:\n'
+                '• patrat perfect\n'
+                '• cub perfect\n'
+                '• amandoua\n',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 25),
               ),
             ),
-            (_numarComun)
-                ? Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      _numarComunText,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  )
-                : Text(""),
+            if (_numarComun)
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Text(
+                  _numarComunText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.blue,
+                  ),
+                ),
+              )
+            else
+              const Text(''),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: _controller,
                 keyboardType: TextInputType.number,
+                // ignore: always_specify_types
                 inputFormatters: [
-                  new FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                  FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                 ],
-                onChanged: (value) {
+                onChanged: (String value) {
                   _numarComun = false;
                   if (value.isNotEmpty) {
                     _numar = int.tryParse(value)!;
@@ -74,9 +76,9 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                 maxLength: 9,
                 textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  hintText: "Introduceti un numar intreg",
+                  hintText:'Introduceti un numar intreg',
                   suffixIcon: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                     ),
                     onPressed: () {
@@ -95,27 +97,27 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                   cubPerfect = false;
                   if (isPerfectSquare(_numar)) {
                     _patratPerfect = true;
-                    _mesajFinal = "Numarul $_numar este patrat perfect.";
+                    _mesajFinal = 'Numarul $_numar este patrat perfect.';
                   }
                   if (isPerfectCube(_numar)) {
                     cubPerfect = true;
-                    _mesajFinal = "Numarul $_numar este cub perfect";
+                    _mesajFinal = 'Numarul $_numar este cub perfect';
                   }
 
                   if (_patratPerfect && cubPerfect) {
                     _mesajFinal =
-                    "Numarul $_numar este atat patrat perfect cat si cub perfect.";
+                        'Numarul $_numar este atat patrat perfect cat si cub perfect.';
                   }
 
                   if (_patratPerfect || cubPerfect) {
-                    _text = "Numarul $_numar";
+                    _text = 'Numarul $_numar';
                     showDialogCustom();
                   } else {
                     _numarComun = true;
                   }
                 });
               },
-              child: Text("Verifica"),
+              child: const Text('Verifica'),
               style: ButtonStyle(
                 backgroundColor:
                     MaterialStateProperty.all<Color>(Colors.grey[300]!),
@@ -127,6 +129,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
     );
   }
 
+  // ignore: always_specify_types
   Future showDialogCustom() {
     return showDialog(
       context: context,
@@ -141,7 +144,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
                 _controller.clear();
               });
             },
-            child: Text("Joaca inca o data"),
+            child: const Text('Joaca inca o data'),
           )
         ],
       ),
@@ -154,7 +157,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
       return false;
     }
 
-    int lastHexDigit = number & 0xF;
+    final int lastHexDigit = number & 0xF;
     if (lastHexDigit > 9) {
       return false; // return immediately in 6 cases out of 16.
     }
@@ -163,7 +166,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
         lastHexDigit == 1 ||
         lastHexDigit == 4 ||
         lastHexDigit == 9) {
-      int t = (sqrt(number) + 0.5).floor();
+      final int t = (sqrt(number) + 0.5).floor();
       return (t * t) == number;
     }
 
@@ -172,7 +175,7 @@ class _CheckMyNumberState extends State<CheckMyNumber> {
 
   bool isPerfectCube(int number) {
     for (int i = 0; i <= pow(number, 1 / 3).roundToDouble() + 1; i++) {
-      int cube = i * i * i;
+      final int cube = i * i * i;
 
       if (cube == number) {
         return true;

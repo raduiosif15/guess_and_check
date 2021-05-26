@@ -16,12 +16,12 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            children: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, '/guess');
                 },
-                child: Text("Guess my number"),
+                child: const Text('Guess my number'),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.grey[300]!),
@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.pushNamed(context, '/check');
                 },
-                child: Text("Check my number"),
+                child: const Text('Check my number'),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.grey[300]!),

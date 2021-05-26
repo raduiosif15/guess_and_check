@@ -17,9 +17,9 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
   int _input = 0;
 
   bool _hint = false;
-  String _hintText = "Alege un numar prima data!";
+  String _hintText = 'Alege un numar prima data!';
   bool _status = false; // false - joc in desfasurare, true - joc terminat
-  String _statusText = "Pierdut";
+  String _statusText = 'Pierdut';
   Color _color = Colors.red;
   int _numarulDeIncercari = 3;
   int _numarulDeHinturi = 5;
@@ -30,18 +30,18 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Guess my number"),
+        title: const Text('Guess my number'),
         centerTitle: true,
       ),
       body: Center(
         child: Center(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(8.0),
                 child: Text(
-                  "Ma gandesc la un numar intre 1 si 100",
+                  'Ma gandesc la un numar intre 1 si 100',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     // textAlign: TextAlign.center,
@@ -49,53 +49,57 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                   ),
                 ),
               ),
-              (_hint)
-                  ? Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        _hintText,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30,
-                        ),
-                      ),
-                    )
-                  : Text(""),
-              (_status)
-                  ? Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        _statusText,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 30,
-                          color: _color,
-                        ),
-                      ),
-                    )
-                  : Text(""),
-              (_maiIncearca)
-                  ? Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Text(
-                        "Mai ai $_numarulDeIncercari incercari",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                        ),
-                      ),
-                    )
-                  : Text(""),
+              if (_hint)
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    _hintText,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 30,
+                    ),
+                  ),
+                )
+              else
+                const Text(''),
+              if (_status)
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    _statusText,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: _color,
+                    ),
+                  ),
+                )
+              else
+                const Text(''),
+              if (_maiIncearca)
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Text(
+                    'Mai ai $_numarulDeIncercari incercari',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                )
+              else
+                const Text(''),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: 150.0, vertical: 30.0),
                 child: TextField(
                   controller: _controller,
                   keyboardType: TextInputType.number,
+                  // ignore: always_specify_types
                   inputFormatters: [
-                    new FilteringTextInputFormatter.allow(RegExp("[0-9]")),
+                    FilteringTextInputFormatter.allow(RegExp('[0-9]')),
                   ],
-                  onChanged: (value) {
+                  onChanged: (String value) {
                     if (value.isNotEmpty) {
                       _input = int.tryParse(value)!;
                     }
@@ -104,7 +108,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.close,
                       ),
                       onPressed: () {
@@ -118,7 +122,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: <Widget>[
                   TextButton(
                     onPressed: () {
                       setState(() {
@@ -128,21 +132,21 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                             _hint = true;
                             if (_input != 0) {
                               if (_input < _numarulDeGhicit) {
-                                _hintText = "Numarul este mai mare";
+                                _hintText = 'Numarul este mai mare';
                               } else if (_input > _numarulDeGhicit) {
-                                _hintText = "Numarul este mai mic";
+                                _hintText = 'Numarul este mai mic';
                               } else {
-                                _hintText = "Nu se stie :)";
+                                _hintText = 'Nu se stie :)';
                               }
                             }
                           } else {
                             _hint = true;
-                            _hintText = "Nu mai aveti hinturi...";
+                            _hintText = 'Nu mai aveti hinturi...';
                           }
                         }
                       });
                     },
-                    child: Text("Hint $_numarulDeHinturi"),
+                    child: Text('Hint $_numarulDeHinturi'),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.grey[300]!),
@@ -159,14 +163,14 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                             _status = false;
                             if (_numarulDeGhicit == _input) {
                               _status = true;
-                              _statusText = "Ai ghicit";
+                              _statusText = 'Ai ghicit';
                               _color = Colors.green;
                               _maiIncearca = false;
                               showDialogCustom();
                             } else {
                               if (_numarulDeIncercari == 0) {
                                 _status = true;
-                                _statusText = "Ai pierdut";
+                                _statusText = 'Ai pierdut';
                                 _color = Colors.red;
                                 _maiIncearca = false;
                                 showDialogCustom();
@@ -177,7 +181,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                         }
                       });
                     },
-                    child: Text("Guess"),
+                    child: const Text('Guess'),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.grey[300]!),
@@ -189,7 +193,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                         initializareVariabile();
                       });
                     },
-                    child: Text("Restart"),
+                    child: const Text('Restart'),
                     style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all<Color>(Colors.grey[300]!),
@@ -210,9 +214,9 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
     _input = 0;
 
     _hint = false;
-    _hintText = "Alege un numar prima data!";
+    _hintText = 'Alege un numar prima data!';
     _status = false;
-    _statusText = "";
+    _statusText = '';
     _color = Colors.red;
     _numarulDeIncercari = 4;
     _numarulDeHinturi = 4;
@@ -222,12 +226,13 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
     _controller.clear();
   }
 
+  // ignore: always_specify_types
   Future showDialogCustom() {
     return showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(_statusText),
-        content: Text("Numarul a fost $_numarulDeGhicit."),
+        content: Text('Numarul a fost $_numarulDeGhicit.'),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -236,7 +241,7 @@ class _GuessMyNumberState extends State<GuessMyNumber> {
                 initializareVariabile();
               });
             },
-            child: Text("Joaca inca o data"),
+            child: const Text('Joaca inca o data'),
           )
         ],
       ),

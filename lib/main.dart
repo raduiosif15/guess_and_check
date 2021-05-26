@@ -5,10 +5,11 @@ import 'package:guess_and_check/pages/home.dart';
 
 void main() {
   runApp(MaterialApp(
+    // ignore: always_specify_types
     routes: {
-      '/': (context) => HomePage(),
-      '/guess': (context) => GuessMyNumber(),
-      '/check': (context) => CheckMyNumber(),
+      '/': (BuildContext context) => const HomePage(),
+      '/guess': (BuildContext context) => const GuessMyNumber(),
+      '/check': (BuildContext context) => const CheckMyNumber(),
     },
   ));
 }
